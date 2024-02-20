@@ -3,7 +3,7 @@ import { UserForm } from "@/components/forms/user-form";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import React from "react";
 
-export default function Page() {
+export default function UpdateUser() {
   const breadcrumbItems = [
     { title: "Users", link: "/dashboard/users" },
     { title: "update", link: "/dashboard/users/detail" },

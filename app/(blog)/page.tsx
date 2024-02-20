@@ -2,7 +2,7 @@ import BlogCard from "@/components/molecules/blog/BlogCard";
 import CarouselCard from "@/components/molecules/blog/CarouselCard";
 import React from "react";
 
-const page = () => {
+const Blog = () => {
   const blogData = [
     {
       title: "Lorem Ipsum dollor sit ammet",
@@ -50,4 +50,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Blog;
