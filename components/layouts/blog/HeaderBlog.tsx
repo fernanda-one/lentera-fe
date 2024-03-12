@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { DropdownMenuShortcut } from "@/components/ui/dropdown-menu";
 import { SearchIcon } from "lucide-react";
 
 export default function NavigationMenuDemo() {
@@ -27,8 +26,9 @@ export default function NavigationMenuDemo() {
           </Button>
         </DialogTrigger>
         <DialogTrigger className="hidden md:block" asChild>
-          <Button variant="outline" className="w-1/3 text-start">
-            Cari...<DropdownMenuShortcut className="text-end">⌘F</DropdownMenuShortcut>
+          <Button variant="outline" className="w-1/3 text-start rounded-full">
+            <span>Cari...</span>
+            <SearchIcon className="h-4 w-4 float-right" />
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-md">

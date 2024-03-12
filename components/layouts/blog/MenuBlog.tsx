@@ -26,7 +26,7 @@ const MenuBlog = () => {
   const router = useRouter();
   return (
     <NavigationMenu>
-      <NavigationMenuList className="flex items-center gap-3">
+      <NavigationMenuList className="flex items-center gap-3 uppercase">
         {blogMenuItem.map((item: BlogMenuType, idx: number) => (
           <NavigationMenuItem key={idx} className="hidden md:block">
             {item.href ? (
@@ -51,7 +51,7 @@ const MenuBlog = () => {
                     ))}
                   </ul>
                 </NavigationMenuContent>
-                <NavigationMenuTrigger>{item?.title}</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="uppercase">{item?.title}</NavigationMenuTrigger>
               </>
             )}
           </NavigationMenuItem>
