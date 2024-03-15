@@ -33,7 +33,7 @@ export const columns: ColumnDef<UserType>[] = [
     header: "COMPANY",
   },
   {
-    accessorKey: "role",
+    accessorKey: "role.name",
     header: "ROLE",
   },
   {

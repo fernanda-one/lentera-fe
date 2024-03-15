@@ -19,17 +19,32 @@ import {
 import { Input } from "./input";
 import { Button } from "./button";
 import { ScrollArea, ScrollBar } from "./scroll-area";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "./pagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   searchKey: string;
+  totalData: number;
+  page: number;
+  pageLimit: number;
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
+  data = [],
   searchKey,
+  totalData,
+  page,
+  pageLimit,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -37,6 +52,31 @@ export function DataTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
   });
+  const totalPages = Math.ceil(totalData / pageLimit);
+
+  const generatePageNumbers = () => {
+    const pages = [];
+
+    // Ensure at least 3 consecutive pages are displayed, even for small total pages
+    const visiblePages = Math.max(
+      3,
+      Math.min(totalPages, page + 1, page - 1) + 2
+    );
+
+    // Calculate starting and ending page numbers based on visible pages and current page
+    const startIndex = Math.max(1, page - Math.floor((visiblePages - 1) / 2));
+    const endIndex = Math.min(totalPages, startIndex + visiblePages - 1);
+
+    for (let i = startIndex; i <= endIndex; i++) {
+      pages.push(
+        <PaginationItem key={i}>
+          <PaginationLink href={`#page=${i}`}>{i}</PaginationLink>
+        </PaginationItem>
+      );
+    }
+
+    return pages;
+  };
 
   /* this can be used to get the selectedrows 
   console.log("value", table.getFilteredSelectedRowModel()); */
@@ -63,7 +103,7 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext(),
+                            header.getContext()
                           )}
                     </TableHead>
                   );
@@ -82,7 +122,7 @@ export function DataTable<TData, TValue>({
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext(),
+                        cell.getContext()
                       )}
                     </TableCell>
                   ))}
@@ -108,7 +148,7 @@ export function DataTable<TData, TValue>({
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
         <div className="space-x-2">
-          <Button
+          {/* <Button
             variant="outline"
             size="sm"
             onClick={() => table.previousPage()}
@@ -123,7 +163,24 @@ export function DataTable<TData, TValue>({
             disabled={!table.getCanNextPage()}
           >
             Next
-          </Button>
+          </Button> */}
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href={`#page=${Math.max(1, page - 1)}`}
+                  // disabled={page === 1}
+                />
+              </PaginationItem>
+              {generatePageNumbers()}
+              <PaginationItem>
+                <PaginationNext
+                  href={`#page=${Math.min(totalPages, page + 1)}`}
+                  // disabled={page === totalPages}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
         </div>
       </div>
     </>

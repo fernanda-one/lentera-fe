@@ -1,34 +1,42 @@
 import React from "react";
-import { Card, CardContent, CardHeader } from "../ui/card";
-import { Bookmark } from "lucide-react";
-import Image from "next/image";
+import { Bookmark, Clock } from "lucide-react";
+import Link from "next/link";
 
-const CardTrending = () => {
+const CardTrending = ({
+  title,
+  date,
+  imageUrl,
+  number,
+}: {
+  title: string;
+  date: string;
+  imageUrl: string;
+  number?: number;
+}) => {
   return (
-    <Card className="rounded-none border shadow-none">
-      <CardContent className="grid grid-cols-12 gap-1 py-5">
-        <div className="col-span-8">
-          <h2 className="font-bold text-base uppercase">Politik</h2>
-          <p className="text-sm max-w-xs my-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            pellentesque.
+    <Link className="relative p-1" href={"/"}>
+      <div className="relative grid grid-cols-3 gap-x-4">
+        <picture className="rounded-xl block overflow-hidden">
+          <img
+            className="hover:scale-125 ease-in duration-150 w-full h-full"
+            alt="news"
+            src={imageUrl}
+          />
+        </picture>
+        <div className="col-span-2">
+          <p className="text-sm font-semibold hover:text-primary ease-in duration-150">
+            {title}
           </p>
-          <div className="flex items-center gap-1">
-            <p className="font-medium text-xs text-muted-foreground">2 Februari, 2024</p>
-            <Bookmark className="w-5 h-5 text-muted-foreground" />
+          <div className="flex items-center gap-1 mt-1 text-muted-foreground">
+            <Clock width={15} height={15} />
+            <p className="text-xs font-semibold">{date}</p>
           </div>
         </div>
-        <div className="col-span-4 bg-gray-300 rounded-lg">
-          {/* <Image
-            src={"/blog-image1.png"}
-            width={1000}
-            height={1000}
-            // objectFit="cover"
-            alt={"gambar"}
-          /> */}
-        </div>
-      </CardContent>
-    </Card>
+      </div>
+      <div className="absolute left-0 top-0 rounded-full bg-primary w-6 h-6 text-center text-white">
+        {number}
+      </div>
+    </Link>
   );
 };
 

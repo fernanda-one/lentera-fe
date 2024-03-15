@@ -8,11 +8,22 @@ import { Separator } from "@/components/ui/separator";
 import { users } from "@/constants/data";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { columns } from "@/components/tables/user-tables/columns"
+import { columns } from "@/components/tables/user-tables/columns";
+// import { useFetchUsers } from "@/repository/users-repository";
+import { useState } from "react";
 
 const breadcrumbItems = [{ title: "User", link: "/dashboard/user" }];
-export default function page() {
+export default function Users() {
+  const [page, setPage] = useState(1);
+  const [pageLimit, setPageLimit] = useState(2);
+  const [search, setSearch] = useState("");
+
   const router = useRouter();
+  // const { data } = useFetchUsers({
+  //   page: page,
+  //   limit: pageLimit,
+  //   search: search,
+  // });
 
   return (
     <>
@@ -31,7 +42,14 @@ export default function page() {
           </Button>
         </div>
         <Separator />
-        <DataTable searchKey="name" columns={columns} data={users} />
+        {/* <DataTable
+          searchKey="name"
+          columns={columns}
+          data={data?.data}
+          totalData={data?.pagination?.total}
+          page={page}
+          pageLimit={pageLimit}
+        /> */}
       </div>
     </>
   );

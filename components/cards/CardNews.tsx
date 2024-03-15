@@ -1,39 +1,40 @@
+import { Clock } from "lucide-react";
+import Link from "next/link";
 import React from "react";
-import { Card, CardContent } from "../ui/card";
-import { Badge } from "../ui/badge";
-import { Bookmark } from "lucide-react";
 
-const CardNews = () => {
+const CardNews = ({
+  date,
+  title,
+  category,
+  imageUrl,
+}: {
+  date: string;
+  title: string;
+  category: string;
+  imageUrl: string;
+}) => {
   return (
-    <Card className="rounded-none bg-secondary border-none shadow-none pt-4">
-      <CardContent>
-        <Badge
-          variant={"outline"}
-          className="uppercase rounded-xs bg-[#94A3B8] font-bold px-2 py-1 mb-4"
-        >
-          Teknologi
-        </Badge>
-        <h2 className="text-base mb-2 leading-5 line-clamp-3 truncate overflow-hidden whitespace-normal">Lorem ipsum dolor sit amet elit,lacus consectetur adipiscing .</h2>
-        <div className="flex justify-between items-center gap-1">
-          <div className="flex flex-col gap-3 basis-2/3">
-            <p className="text-xs text-muted-foreground w-full line-clamp-4 truncate overflow-hidden whitespace-normal">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              pellentesque libero ut velit ullamcorper feugiat.Nam ut diam
-              dapibus, fermentum lacus eu, pretium enim.Fusce posuere est nibh,
-              pharetra ornare diam aliquam a. Integer congue ipsum sed faucibus
-              euismod. Sed dignissim a diam ut molestie.{" "}
-            </p>
-            <div className="flex items-center gap-1">
-              <span className="text-xs font-medium">2 Februari, 2024</span>
-              <Bookmark className="h-5 w-5" />
-            </div>
+    <Link href={"/"}>
+      <div className="grid grid-cols-3 gap-x-4">
+        <picture className="rounded-xl block overflow-hidden">
+          <img
+            className="hover:scale-125 ease-in duration-150 w-full h-full"
+            alt="news"
+            src={imageUrl}
+          />
+        </picture>
+        <div className="col-span-2">
+          <div className="flex items-center gap-1 mt-1 text-xs font-semibold text-muted-foreground">
+            <p>{category}</p>|
+            <Clock width={15} height={15} />
+            <p>{date}</p>
           </div>
-          <div className="basis-2/5 w-[100px] h-[100px] bg-slate-400 rounded-lg">
-            
-          </div>
+          <p className="text-base font-semibold hover:text-primary ease-in duration-150">
+            {title}
+          </p>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </Link>
   );
 };
 
