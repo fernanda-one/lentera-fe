@@ -24,7 +24,7 @@ const CardTrending = ({
           />
         </picture>
         <div className="col-span-2">
-          <p className="text-sm font-semibold hover:text-primary ease-in duration-150">
+          <p className="text-sm text-balance line-clamp-2 truncate overflow-hidden font-semibold hover:text-primary ease-in duration-150">
             {title}
           </p>
           <div className="flex items-center gap-1 mt-1 text-muted-foreground">
