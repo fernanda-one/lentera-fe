@@ -15,10 +15,9 @@ import {
 import { blogMenuItem } from "@/constants/data";
 import { useRouter } from "next/navigation";
 import { BlogMenuType } from "@/types";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Button } from "@/components/ui/button";
-import { MenuIcon } from "lucide-react";
+import { AlignRight } from "lucide-react";
 import MenuMobileBlog from "./MenuMobileBlog";
 import { UserNav } from "../UserNav";
 
@@ -65,7 +64,7 @@ const MenuBlog = () => {
           blogMenuItem={blogMenuItem}
         >
           <Button className="md:hidden" size={'icon'}>
-            <MenuIcon/>
+            <AlignRight/>
           </Button>
         </MenuMobileBlog>
 
