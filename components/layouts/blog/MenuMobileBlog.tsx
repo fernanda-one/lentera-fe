@@ -42,10 +42,9 @@ const MenuMobileBlog = ({
                     {item.title}
                   </AccordionTrigger>
                   {item.children?.map((childItem, childIdx) => (
-                    <SheetClose asChild onClick={() => router.push(`${childItem.href}`)}>
+                    <SheetClose key={childIdx} asChild onClick={() => router.push(`${childItem.href}`)}>
                       <AccordionContent
                         className="text-base w-full hover:text-primary ease-in duration-150 py-2 px-2 cursor-pointer"
-                        key={childIdx}
                       >
                         {childItem.title}
                       </AccordionContent>

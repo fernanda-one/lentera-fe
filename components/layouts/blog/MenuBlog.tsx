@@ -37,37 +37,58 @@ const MenuBlog = () => {
             ) : (
               <>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                    {item?.children?.map((items: BlogMenuType, index: number) => (
-                      <ListItem
-                        key={index}
-                        title={items.title}
-                        onClick={() => items?.href && router.push(items?.href)}
-                        className="cursor-pointer"
-                      >
-                        {items.description}
-                      </ListItem>
-                    ))}
-                  </ul>
+                  {item?.isDescription ? (
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                      {item?.children?.map(
+                        (items: BlogMenuType, index: number) => (
+                          <ListItem
+                            key={index}
+                            title={items.title}
+                            onClick={() =>
+                              items?.href && router.push(items?.href)
+                            }
+                            className="cursor-pointer"
+                          >
+                            {items.description}
+                          </ListItem>
+                        )
+                      )}
+                    </ul>
+                  ) : (
+                    <ul className="w-[200px]">
+                      {item?.children?.map(
+                        (items: BlogMenuType, index: number) => (
+                          <ListItem
+                            key={index}
+                            title={items.title}
+                            onClick={() =>
+                              items?.href && router.push(items?.href)
+                            }
+                            className="cursor-pointer"
+                          >
+                            {items.description}
+                          </ListItem>
+                        )
+                      )}
+                    </ul>
+                  )}
                 </NavigationMenuContent>
-                <NavigationMenuTrigger className="uppercase">{item?.title}</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="uppercase">
+                  {item?.title}
+                </NavigationMenuTrigger>
               </>
             )}
           </NavigationMenuItem>
         ))}
 
         <ModeToggle />
-        
         <UserNav />
-        
-        <MenuMobileBlog
-          blogMenuItem={blogMenuItem}
-        >
-          <Button className="md:hidden" size={'icon'}>
-            <AlignRight/>
+
+        <MenuMobileBlog blogMenuItem={blogMenuItem}>
+          <Button className="md:hidden" size={"icon"}>
+            <AlignRight />
           </Button>
         </MenuMobileBlog>
-
       </NavigationMenuList>
     </NavigationMenu>
   );
