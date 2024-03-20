@@ -3,6 +3,7 @@ import { Icons } from "@/components/icons";
 export type BlogMenuType = {
   title: string;
   href?: string;
+  isDescription?: boolean;
   description?: string;
   children?: BlogMenuType[] | undefined;
 };

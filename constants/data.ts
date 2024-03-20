@@ -3,7 +3,25 @@ import { BlogMenuType, DashboardMenuType, UserType } from "@/types";
 export const blogMenuItem: BlogMenuType[] = [
   {
     title: "Berita",
-    href: "/berita",
+    isDescription: false,
+    children: [
+      {
+        title: "Bisnis Ekonomi",
+        href: "/berita/ekonomi",
+      },
+      {
+        title: "Kesehatan",
+        href: "/berita/kesehatan",
+      },
+      {
+        title: "Nasional",
+        href: "/berita/nasional",
+      },
+      {
+        title: "Teknologi",
+        href: "/berita/teknologi",
+      },
+    ],
   },
   {
     title: "Artikel",
@@ -19,6 +37,7 @@ export const blogMenuItem: BlogMenuType[] = [
   },
   {
     title: "Tentang Kami",
+    isDescription: true,
     children: [
       {
         title: "Tokoh",
