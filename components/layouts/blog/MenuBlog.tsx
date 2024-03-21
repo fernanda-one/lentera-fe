@@ -55,7 +55,7 @@ const MenuBlog = () => {
                       )}
                     </ul>
                   ) : (
-                    <ul className="w-[200px]">
+                    <ul className="w-[150px]">
                       {item?.children?.map(
                         (items: BlogMenuType, index: number) => (
                           <ListItem
